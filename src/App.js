@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
 
+import { useState } from 'react';
+import './App.css';
+import Slider from 'react-slider';
+
+
+const min = 1;
+const max = 100;
 function App() {
+  const [values,setValues]=useState([min,max]);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <div className='Range-container'>
+        <h1>Range</h1>
+
+        <div className='minmaxdiv'>Minimum Range {values[0]} - Maximun Range {values[1]}</div>
+        <Slider onChange={setValues} value={values} min={min} max={max}/>
+
+        <div className='curdiv'>Current Range - {values[1]-values[0]}</div>
+      </div>
     </div>
   );
 }
